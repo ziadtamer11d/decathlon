@@ -338,11 +338,22 @@ body {
 @media (max-width: 768px) {
     .product-container {
         flex-direction: column;
-        padding: 1rem;
+        padding: 0;
+        gap: 1rem;
     }
 
     .image-container {
         flex: 0 0 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .carousel-nav {
+        display: none; /* Hide navigation arrows on mobile */
+    }
+
+    .product-info {
+        padding: 1rem;
     }
 
     .price-container {
