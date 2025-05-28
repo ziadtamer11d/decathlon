@@ -335,7 +335,7 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .product-container {
         flex-direction: column;
         padding: 0;
@@ -348,8 +348,9 @@ body {
         border-radius: 0;
     }
 
-    .carousel-nav {
-        display: none; /* Hide navigation arrows on mobile */
+    .image-container .carousel-nav,
+    button.carousel-nav {
+        display: none !important;
     }
 
     .product-info {
