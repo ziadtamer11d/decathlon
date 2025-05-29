@@ -28,6 +28,9 @@ body {
     flex: 0 0 50%;
     padding: 0 0 0 20px;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
 }
 .product-title {
     font-size: 32px;
@@ -36,7 +39,7 @@ body {
     word-wrap: break-word;
 }
 .current-price {
-    font-size: 16px;
+    font-size: 20px;
     font-family: Inter, sans-serif;
     padding: 2px 4px;
     border-radius: 0;
@@ -59,7 +62,7 @@ body {
     flex-wrap: wrap;
 }
 .original-price {
-    font-size: 12px;
+    font-size: 16px;
     color: #616161;
     text-decoration: line-through;
     font-family: Inter, sans-serif;
@@ -68,7 +71,7 @@ body {
 .discount {
     color: #E3262F;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 16px;
     font-family: Inter, sans-serif;
     padding: 2px 0px;
 }
@@ -76,6 +79,7 @@ body {
     color: #666;
     line-height: 1.6;
     margin-bottom: 30px;
+    flex-grow: 1;
 }
 .description p {
     margin: 0;
@@ -94,6 +98,7 @@ body {
     border-radius: 4px;
     font-weight: bold;
     width: fit-content;
+    margin-top: auto;
 }
 .view-button:hover {
     background: #32408f;
@@ -137,11 +142,21 @@ body {
     .product-details {
         flex: 0 0 50%;
         padding: 0 0 0 15px;
+        min-height: 350px;
     }
     
     .product-title {
         font-size: 24px;
         margin: 0 0 15px 0;
+    }
+    
+    .current-price {
+        font-size: 18px;
+    }
+    
+    .original-price,
+    .discount {
+        font-size: 14px;
     }
 }
 
@@ -172,6 +187,7 @@ body {
         flex: none;
         width: 100%;
         padding: 10px 0;
+        min-height: auto;
     }
     
     .product-title {
@@ -183,8 +199,13 @@ body {
         gap: 6px;
     }
     
+    .description {
+        margin-bottom: 20px;
+    }
+    
     .view-button {
         width: 100%;
         text-align: center;
+        margin-top: 20px;
     }
 } 
