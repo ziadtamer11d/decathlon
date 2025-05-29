@@ -31,7 +31,7 @@ body {
 .current-price {
     font-size: 20px;
     font-family: Inter, sans-serif;
-    padding: 4px 8px;
+    padding: 2px 4px;
     border-radius: 0;
     display: inline-block;
     font-weight: 500;
@@ -41,24 +41,28 @@ body {
     color: #101010;
 }
 .price-discounted {
-    background: #FF0000;
-    color: white;
+    background: #E3262F;
+    color: #FFFFFF;
 }
 .price-container {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 8px;
     margin-bottom: 20px;
 }
 .original-price {
     font-size: 20px;
-    color: #666;
+    color: #616161;
     text-decoration: line-through;
+    font-family: Inter, sans-serif;
+    padding: 2px 0px;
 }
 .discount {
-    color: #ff0000;
-    font-weight: bold;
+    color: #E3262F;
+    font-weight: normal;
     font-size: 20px;
+    font-family: Inter, sans-serif;
+    padding: 2px 0px;
 }
 .description {
     color: #666;
