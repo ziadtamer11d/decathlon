@@ -29,7 +29,7 @@ body {
     color: #333;
 }
 .current-price {
-    font-size: 20px;
+    font-size: 16px;
     font-family: Inter, sans-serif;
     padding: 2px 4px;
     border-radius: 0;
@@ -51,7 +51,7 @@ body {
     margin-bottom: 20px;
 }
 .original-price {
-    font-size: 20px;
+    font-size: 12px;
     color: #616161;
     text-decoration: line-through;
     font-family: Inter, sans-serif;
@@ -60,7 +60,7 @@ body {
 .discount {
     color: #E3262F;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 12px;
     font-family: Inter, sans-serif;
     padding: 2px 0px;
 }
