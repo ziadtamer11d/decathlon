@@ -80,6 +80,9 @@ body {
     line-height: 1.6;
     margin-bottom: 30px;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .description p {
     margin: 0;
@@ -158,6 +161,11 @@ body {
     .discount {
         font-size: 14px;
     }
+
+    .view-button {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
 }
 
 /* Mobile View */
@@ -201,11 +209,14 @@ body {
     
     .description {
         margin-bottom: 20px;
+        min-height: 120px;
     }
     
     .view-button {
         width: 100%;
         text-align: center;
         margin-top: 20px;
+        padding: 8px 20px;
+        font-size: 14px;
     }
 } 
