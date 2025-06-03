@@ -1,11 +1,12 @@
     body { 
         font-family: Arial, sans-serif;
         margin: 0;
-        padding: 20px;
+        padding: 0;
     }
 
     .showroom-products-track {
         margin-bottom: 50px;
+        padding: 20px 0;
     }
 
     .product-container {
