@@ -1,0 +1,133 @@
+
+.rent-button {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 125px;
+    background-color: #3643BA;
+    border-radius: 8px 0 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+.rent-button.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rent-text {
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 1px;
+}
+
+/* Slide Panel */
+.slide-panel {
+    position: fixed;
+    top: 50%;
+    right: -450px;
+    transform: translateY(-50%);
+    width: 450px;
+    height: 750px;
+    background-color: white;
+ border-radius: 12px 0 0 12px;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    transition: right 0.4s ease-in-out;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.slide-panel.active {
+    right: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 1001;
+}
+
+.close-btn:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+
+
+
+
+.panel-content p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.clickable-image {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+/* Desktop Image - Show on screens larger than 768px */
+.desktop-image {
+    display: block;
+}
+
+.mobile-image {
+    display: none;
+}
+
+
+
+.panel-image {
+    width: 100%;
+    background-size: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .slide-panel {
+        width: 320px;
+        height: 750px;
+    }
+    
+    .rent-button {
+        width: 35px;
+        height: 125px;
+    }
+    
+    /* Mobile Image - Show on screens 768px and below */
+    .desktop-image {
+        display: none;
+    }
+    
+    .mobile-image {
+        display: block;
+    }
+}
