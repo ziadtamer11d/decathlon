@@ -118,8 +118,8 @@
     }
     
     .rent-button {
-        width: 35px;
-        height: 125px;
+        width: 20px;
+        height: 110px;
     }
     
     /* Mobile Image - Show on screens 768px and below */
@@ -130,4 +130,5 @@
     .mobile-image {
         display: block;
     }
+
 }
