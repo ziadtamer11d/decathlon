@@ -121,6 +121,9 @@
         width: 30px;
         height: 120px;
     }
+.rent-text {
+font-size: 16px;
+}
     
     /* Mobile Image - Show on screens 768px and below */
     .desktop-image {
@@ -132,5 +135,6 @@
     }
 
 }
+
 
 
