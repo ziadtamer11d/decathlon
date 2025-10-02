@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObjectID Validator & Product Fetcher</title>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-layout">
+        <!-- Filter Sidebar -->
+        <div class="filter-sidebar" id="filterSidebar">
+            <div class="filter-header">
+                <h3>Facets</h3>
+                <button class="collapse-btn" onclick="toggleSidebar()">▼</button>
+            </div>
+            
+            <div class="filter-search">
+                <label>Search for facets</label>
+                <input type="text" id="facetSearch" placeholder="Search for facets..." onkeyup="searchFacets(this.value)">
+            </div>
+            
+            <div class="filter-actions">
+                <button onclick="clearAllFilters()" class="clear-filters-btn">Clear All Filters</button>
+            </div>
+            
+            <div class="filters-container" id="filtersContainer">
+                <!-- Filters will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container">
+                <h1>🔄 Model Code to ObjectID Converter</h1>
+                
+                <div class="note">
+                    <strong>How it works:</strong> Enter model codes and this tool will search Algolia using the <code>id_code_model</code> field to find the corresponding ObjectIDs.
+                </div>
+                <div>
+                    <label for="modelCodes"><strong>Enter Model Codes:</strong></label>
+                    <textarea id="modelCodes" placeholder="Enter model codes here (one per line or comma-separated):
+8636987
+8550300
+8576080
+8573204
+..."></textarea>
+                </div>
+
+                <button onclick="convertToObjectIDs()" id="convertBtn">🔄 Convert to ObjectIDs</button>
+                <button onclick="copyObjectIDs()" id="copyBtn" disabled>📋 Copy ObjectIDs</button>
+                <button onclick="copyAsArray()" id="arrayBtn" disabled>📤 Copy as Array</button>
+                <button onclick="clearAll()" id="clearBtn">🗑️ Clear All</button>
+
+                <div id="results" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
