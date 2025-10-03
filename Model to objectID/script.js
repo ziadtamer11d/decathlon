@@ -65,11 +65,11 @@ async function fetchFacets() {
         return;
     }
 
-    // Parse model codes
-    const modelCodes = modelCodesText
+    // Parse model codes and remove duplicates from input
+    const modelCodes = [...new Set(modelCodesText
         .split(/[\n,]/)
         .map(code => code.trim())
-        .filter(code => code.length > 0);
+        .filter(code => code.length > 0))];
 
     if (modelCodes.length === 0) {
         facetsData = {};
@@ -296,11 +296,11 @@ async function searchWithFilters() {
         return;
     }
 
-    // Parse model codes
-    const modelCodes = modelCodesText
+    // Parse model codes and remove duplicates from input
+    const modelCodes = [...new Set(modelCodesText
         .split(/[\n,]/)
         .map(code => code.trim())
-        .filter(code => code.length > 0);
+        .filter(code => code.length > 0))];
 
     if (modelCodes.length === 0) {
         return;
@@ -333,12 +333,23 @@ async function searchWithFilters() {
             analytics: false,
         });
 
+        // Remove duplicates from search results based on ObjectID
+        const uniqueHits = [];
+        const seenObjectIDs = new Set();
+        
+        searchResult.hits.forEach(hit => {
+            if (!seenObjectIDs.has(hit.objectID)) {
+                uniqueHits.push(hit);
+                seenObjectIDs.add(hit.objectID);
+            }
+        });
+
         // Update facets with filtered counts (based on returned hits)
-        facetsData = computeFacetsFromHits(searchResult.hits);
+        facetsData = computeFacetsFromHits(uniqueHits);
         renderFilters();
 
         // Display filtered products
-        displayFilteredProducts(searchResult.hits);
+        displayFilteredProducts(uniqueHits);
 
     } catch (error) {
         console.error('Error searching with filters:', error);
@@ -429,11 +440,11 @@ async function convertToObjectIDs() {
         return;
     }
 
-    // Parse model codes
-    const modelCodes = modelCodesText
+    // Parse model codes and remove duplicates from input
+    const modelCodes = [...new Set(modelCodesText
         .split(/[\n,]/)
         .map(code => code.trim())
-        .filter(code => code.length > 0);
+        .filter(code => code.length > 0))];
 
     if (modelCodes.length === 0) {
         alert('No valid model codes found');
@@ -452,6 +463,7 @@ async function convertToObjectIDs() {
 
         foundProducts = [];
         const notFoundCodes = [];
+        const processedObjectIDs = new Set(); // Track processed ObjectIDs to prevent duplicates
         let resultHTML = '';
 
         for (let i = 0; i < modelCodes.length; i++) {
@@ -470,8 +482,15 @@ async function convertToObjectIDs() {
 
                 if (searchResult.hits && searchResult.hits.length > 0) {
                     const hit = searchResult.hits[0];
-                    foundProducts.push(hit);
-                    resultHTML += `✅ ${modelCode} → ${hit.objectID} (${hit.product_name || hit.name || 'Unknown'})\n`;
+                    
+                    // Check if this ObjectID was already processed (prevent duplicates)
+                    if (!processedObjectIDs.has(hit.objectID)) {
+                        foundProducts.push(hit);
+                        processedObjectIDs.add(hit.objectID);
+                        resultHTML += `✅ ${modelCode} → ${hit.objectID} (${hit.product_name || hit.name || 'Unknown'})\n`;
+                    } else {
+                        resultHTML += `⚠️ ${modelCode} → ${hit.objectID} (Duplicate - already found)\n`;
+                    }
                 } else {
                     notFoundCodes.push(modelCode);
                     resultHTML += `❌ ${modelCode} → Not Found\n`;
@@ -758,8 +777,26 @@ function removeProduct(index) {
     updateProductDisplay();
 }
 
+// Helper function to remove duplicates from foundProducts array
+function deduplicateFoundProducts() {
+    const uniqueProducts = [];
+    const seenObjectIDs = new Set();
+    
+    foundProducts.forEach(product => {
+        if (!seenObjectIDs.has(product.objectID)) {
+            uniqueProducts.push(product);
+            seenObjectIDs.add(product.objectID);
+        }
+    });
+    
+    foundProducts = uniqueProducts;
+}
+
 // Update product display after reordering or removing
 function updateProductDisplay() {
+    // Ensure no duplicates before displaying
+    deduplicateFoundProducts();
+    
     const foundObjectIDs = foundProducts.map(p => p.objectID);
     const requestedCodes = foundProducts.map(p => p.id_code_model);
     const notFoundCodes = [];
