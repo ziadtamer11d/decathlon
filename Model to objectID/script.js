@@ -502,6 +502,9 @@ async function convertToObjectIDs() {
             }
         }
 
+        // Store original not found codes to preserve them during updates
+        originalNotFoundCodes = [...notFoundCodes];
+        
         // Display final results
         displayResults(modelCodes, foundProducts, notFoundCodes, resultHTML);
 
@@ -569,6 +572,9 @@ function displayResults(requestedCodes, foundProducts, notFoundCodes, resultHTML
 
     resultsDiv.innerHTML = html;
 }
+
+// Store the original not found codes to preserve them during updates
+let originalNotFoundCodes = [];
 
 // Function to get product image URL
 function getProductImageUrl(product) {
@@ -689,6 +695,7 @@ function clearAll() {
     document.getElementById('copyBtn').disabled = true;
     document.getElementById('arrayBtn').disabled = true;
     foundProducts = [];
+    originalNotFoundCodes = [];
 }
 
 // Drag and Drop functionality
@@ -799,14 +806,14 @@ function updateProductDisplay() {
     
     const foundObjectIDs = foundProducts.map(p => p.objectID);
     const requestedCodes = foundProducts.map(p => p.id_code_model);
-    const notFoundCodes = [];
     let resultHTML = '';
     
     foundProducts.forEach((product, index) => {
         resultHTML += `✅ ${product.id_code_model} → ${product.objectID} (${product.product_name || product.name || 'Unknown'})\n`;
     });
     
-    displayResults(requestedCodes, foundProducts, notFoundCodes, resultHTML);
+    // Use original not found codes to preserve them during updates
+    displayResults(requestedCodes, foundProducts, originalNotFoundCodes, resultHTML);
     
     // Update copy buttons
     document.getElementById('copyBtn').disabled = foundProducts.length === 0;
